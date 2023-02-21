@@ -1,3 +1,18 @@
+const Product=require('../models/productModel');
+
+
+
+//Create Product 
+
+exports.createProduct=async (req,res)=>{
+    console.log("got request",req.body)
+    const product =await Product.create(req.body);
+    res.status(201).json({
+        success:true,
+        product
+    })
+}
+
 exports.getAllProducts=(req,res)=>{
-    res.statis(200).json({message:"Route is working fine"})
+    res.status(200).json({message:"Route is working fine"})
 }
