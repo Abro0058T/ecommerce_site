@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cookieParser=require("cookie-parser")
 
 const errorMiddleware=require("./middleware/error")
 
@@ -9,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-
+app.use(cookieParser())
 //Route Imports
 
 const product=require("./routes/productRoute")
