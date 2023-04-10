@@ -3,7 +3,7 @@ const app = express();
 const cookieParser=require("cookie-parser")
 
 const errorMiddleware=require("./middleware/error")
-
+const order=require("./routes/orderRoute")
 var bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,6 +19,7 @@ app.use("/api/v1",product);
 
 app.use("/api/v1",user);
 
+app.use("/api/v1",order);
 // Middleware for error
 
 
