@@ -5,7 +5,9 @@ const cookieParser=require("cookie-parser")
 const errorMiddleware=require("./middleware/error")
 const order=require("./routes/orderRoute")
 var bodyParser = require('body-parser')
+const cors=require('cors')
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
