@@ -8,7 +8,9 @@ import React ,{useEffect} from 'react';
 import Footer from './component/layout/Footer/Footer';
 import Loader from './component/layout/Loader/Loader';
 import ProductDetails from './component/Product/ProductDetails.js'
-
+import Products from "./component/Product/Products.js"
+import  Search   from './component/Product/Search.js';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   React.useEffect(()=>{
@@ -19,14 +21,17 @@ function App() {
     })
    })
   return (
-    <Router>
+    <BrowserRouter>
  <Header/>
  <Routes>
  <Route extact path="/" element={<Home/>}/> 
  <Route extact path="/product/:id" element={<ProductDetails/>}/> 
+ <Route extact path="/products" element={<Products/>}/> 
+ <Route path="/products/:keyword" element={<Products/>}/> 
+ <Route extact path="/search" element={<Search/>}/> 
  </Routes>
  <Footer/>
-    </Router>
+    </BrowserRouter>
  
   );
 }
