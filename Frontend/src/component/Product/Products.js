@@ -31,6 +31,22 @@ function Products() {
                         ))
                     }
                 </div>
+                <div className="paginationBox">
+                    <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultPerPage}
+                    totalItemsCount={productsCount}
+                    onChange={setCurrentPageNo}
+                    nextPageText="Next"
+                    prevPageText="Prev"
+                    firstPageText="1st"
+                    lastPageText="Last"
+                    itemsClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkCLass="prageLinkActive"  
+                    />
+                </div>
             </Fragment>)
         }
     </Fragment>

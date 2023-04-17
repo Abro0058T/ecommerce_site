@@ -22,6 +22,7 @@ export const productReducer =
           loading: false,
           products: action.payload.products,
           productsCount: action.payload.productsCount,
+          resultPerPage:action.payload.resultPerPage
         };
         break;
       case ALL_PRODUCT_FAIL:
@@ -77,3 +78,6 @@ export const productReducer =
         return state;
     }
   };
+
+
+  //6:52:45
