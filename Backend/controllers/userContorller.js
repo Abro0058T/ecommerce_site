@@ -6,7 +6,6 @@ const sendEmail = require("../utils/sendEmail.js");
 const ErrorHandler = require("../utils/errorhandler");
 
 //REgister a User
-
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -148,7 +147,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Ols password is incorrect ", 401));
+    return next(new ErrorHandler("Old password is incorrect ", 401));
   }
 
   if (req.body.newPassword !== req.body.confirmPassword) {
