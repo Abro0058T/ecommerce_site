@@ -18,20 +18,28 @@ exports.createProduct = catchAsyncErrors(async (req, res) => {
 //Get all product
 exports.getAllProducts = catchAsyncErrors(async (req, res,next) => {
 
-  const resultPerPage = 8;
+  const resultPerPage = 6;
   const productsCount =await Product.countDocuments();
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter()
     .pagination(resultPerPage);
+   
 
-  const products = await apiFeature.query;
+    // let products=await apiFeature.query;
+
+    // let filteredProductsCount=products.length;
+
+    // apiFeature.pagination(resultPerPage);
+
+    const products = await apiFeature.query;
   console.log(products)
   // console.log(products)
   res.status(200).json({
     success:true,
     products,
-    productsCount,resultPerPage
+    productsCount,resultPerPage,
+    // filteredProductsCount
   });
 });
 
@@ -186,3 +194,8 @@ exports.deleteReview =catchAsyncErrors(async(req,res,next)=>{
   })
 })
 
+
+
+
+////Task to do /////
+//remove pagination bug
