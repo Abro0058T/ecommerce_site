@@ -11,6 +11,7 @@ import ProductDetails from './component/Product/ProductDetails.js'
 import Products from "./component/Product/Products.js"
 import  Search   from './component/Product/Search.js';
 import { BrowserRouter } from 'react-router-dom';
+import LoginSignup from './component/User/LoginSignup';
 
 function App() {
   React.useEffect(()=>{
@@ -25,6 +26,8 @@ function App() {
  <Header/>
  <Routes>
  <Route extact path="/" element={<Home/>}/> 
+ <Route extact path="/login" element={<LoginSignup/>}/> 
+
  <Route extact path="/product/:id" element={<ProductDetails/>}/> 
  <Route extact path="/products" element={<Products/>}/> 
  <Route path="/products/:keyword" element={<Products/>}/> 
