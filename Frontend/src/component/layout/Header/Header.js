@@ -2,6 +2,9 @@ import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import { Route, Router } from "react-router-dom";
 import logo from"../../../logo.png"
+import {MdAccountCircle } from "react-icons/md";
+import {MdSearch } from "react-icons/md";
+import {MdAddShoppingCart } from "react-icons/md";
 
 const Header = () => {
   return (
@@ -29,6 +32,14 @@ const Header = () => {
       nav4justifyContent="flex-start"
       link1ColorHover="#eb4034"
       link1Margin="1vmax"
+      profileIconUrl="/login"
+      // profileIcon={true}
+      profileIcon={true}
+      searchIcon={true}
+      cartIcon={true}
+      SearchIconElement={MdSearch}
+      ProfileIconElement= {MdAccountCircle}
+      CartIconElement={MdAddShoppingCart}
       profileIconColor="rgba(35,35,35,0.8)"
       searchIconColor="rgba(35,35,35,0.8)"
       cartIconColor="rgba(35,35,35,0.8)"
