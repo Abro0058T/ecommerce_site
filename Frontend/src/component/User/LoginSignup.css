@@ -85,4 +85,48 @@
     color: rgba(0,0,0,0.623);
 }
 
-/* //7:86:10 */
+.loginForm >a {
+    color: rgba(0,0,0,0.651);
+    text-decoration: none;
+    align-self: flex-end;
+    transition: all 0.5;
+    font: 500 0.8vmax "Gill Sans"
+}
+.loginForm >a:hover{
+    color: black;
+}
+.loginBtn,
+.signUpBtn{
+    border: none;
+    background-color: tomato;
+    color: white;
+    font: 300 0.9vmax "Roboto";
+    width: 100%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 4px ;
+    outline: none;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.219);
+}
+
+.loginBtn:hover,
+.signUpBtn:hover{
+    background-color: rgb(179,66,46);
+}
+
+.shiftToLeft{
+    transform: translateX(-100%);
+}
+.shiftToNeutral{
+    transform: translateX(0%);
+}
+.shiftToNeutralForm{
+    transform: translateX(0%) translateY(-100%);
+}
+.shiftToRight{
+    transform: translateX(100%);
+}
+
+
+/*//7:46:55*/
