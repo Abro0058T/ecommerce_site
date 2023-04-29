@@ -62,13 +62,14 @@ function LoginSignup() {
             // console.log(switcherTab.current.classList)
             registerTab.current.classList.remove("shiftToNeutralForm")
             loginTab.current.classList.remove("shiftToLeft")
-            // console.log("clicked")
+            console.log(registerTab.current.classList)
         }
         if(tab==="register"){
             switcherTab.current.classList.add("shiftToRight")
             switcherTab.current.classList.remove("shiftToNeutral")
-            registerTab.current.classList.remove("shiftToNeutralForm")
-            loginTab.current.classList.remove("shiftToLeft")
+            registerTab.current.classList.add("shiftToNeutralForm")
+            loginTab.current.classList.add("shiftToLeft")
+
         }
 
 
