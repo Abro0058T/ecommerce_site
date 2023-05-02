@@ -1,11 +1,17 @@
 
-import React, { Fragment ,useRef,useState} from 'react'
+import React, { Fragment ,useRef,useState,useEffect} from 'react'
 import './LoginSignup.css'
 import Loader from '../layout/Loader/Loader'
 import {Link} from "react-router-dom"
 import { MdMailOutline ,MdLockOpen ,MdFaceIcon, MdFace2} from 'react-icons/md'
+import {useDispatch,useSelector} from "react-redux"
+import { clearErrors,login } from '../../actions/userAction'
+import {useAlert} from "react-alert";
 
-function LoginSignup() {
+const  LoginSignup=()=> {
+    const dispatch=useDispatch();
+    const alert=useAlert();
+
     const loginTab=useRef(null)
     const registerTab=useRef(null)
     const switcherTab=useRef(null)
@@ -24,8 +30,10 @@ function LoginSignup() {
     const [avatar,setAvatar]=useState()
     const[avatarPreview,setAvatarPreview]=useState("/Profile.png");
 
-    const loginSubmit=()=>{
-        console.log(" Login Form submited")
+    const loginSubmit=(e)=>{
+        e.preventDefault();
+        // console.log(" Login Form submited")
+        dispatch(login(loginEmail,loginPassword))
     }
     const registerSubmit=(e)=>{
         e.preventDefault();
@@ -54,6 +62,13 @@ function LoginSignup() {
         }
 
     }
+
+    useEffect(()=>{
+        if(error){
+            alert.error(error);
+            dispatch(clearErrors())
+        }
+    },[dispatch,error,alert])
 
     const switchTabs=(e,tab)=>{
         if(tab==="login"){
@@ -159,4 +174,4 @@ function LoginSignup() {
 
 export default LoginSignup
 
-//7:30:01
+//7:57:01
