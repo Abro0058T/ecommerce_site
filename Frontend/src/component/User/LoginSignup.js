@@ -5,12 +5,17 @@ import Loader from '../layout/Loader/Loader'
 import {Link} from "react-router-dom"
 import { MdMailOutline ,MdLockOpen ,MdFaceIcon, MdFace2} from 'react-icons/md'
 import {useDispatch,useSelector} from "react-redux"
-import { clearErrors,login } from '../../actions/userAction'
+import { clearErrors,login ,register} from '../../actions/userAction'
 import {useAlert} from "react-alert";
+import {useNavigate} from "react-router-dom"
 
 const  LoginSignup=()=> {
+    const navigate=useNavigate()
     const dispatch=useDispatch();
     const alert=useAlert();
+
+
+    const {error,loading ,isAuthenticated}=useSelector(state=>state.user)
 
     const loginTab=useRef(null)
     const registerTab=useRef(null)
@@ -43,7 +48,8 @@ const  LoginSignup=()=> {
         myForm.set("email",email);
         myForm.set("password",password);
         myForm.set("avatar",avatar);
-        console.log("Sign Up Form Submited")
+        // console.log("Sign Up Form Submited")
+        dispatch(register(myForm))
     };
 
     const registerDataChange=(e)=>{
@@ -68,7 +74,10 @@ const  LoginSignup=()=> {
             alert.error(error);
             dispatch(clearErrors())
         }
-    },[dispatch,error,alert])
+        if(isAuthenticated){
+            navigate("/account")
+        }
+    },[dispatch,error,alert,navigate,isAuthenticated])
 
     const switchTabs=(e,tab)=>{
         if(tab==="login"){
@@ -91,6 +100,8 @@ const  LoginSignup=()=> {
     }
 
   return (
+
+    <Fragment>(loading ?<Loader/> :
     <Fragment>
         <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
@@ -169,6 +180,7 @@ const  LoginSignup=()=> {
             </div>
         </div>
     </Fragment>
+    )</Fragment>
   )
 }
 

@@ -12,6 +12,8 @@ import Products from "./component/Product/Products.js"
 import  Search   from './component/Product/Search.js';
 import { BrowserRouter } from 'react-router-dom';
 import LoginSignup from './component/User/LoginSignup';
+import store from "./store"
+import { loadUser } from './actions/userAction';
 
 function App() {
   React.useEffect(()=>{
@@ -20,7 +22,9 @@ function App() {
         families:["Roboto","Droid Sans","Chilanka"]
       }
     })
-   })
+
+    store.dispatch(loadUser());
+   },[])
   return (
     <BrowserRouter>
  <Header/>
