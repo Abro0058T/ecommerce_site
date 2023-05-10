@@ -7,6 +7,7 @@ import {
   REGISTER_USER_SUCCESS,
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
+  LOGOUT_FAIL,LOGOUT_SUCCESS,
   LOAD_USER_FAIL,
   REGISTER_USER_FAIL,
 } from "../constants/userConstant";
@@ -22,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
     const config={headers:{"Content-Type":"application/json"}}
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/login`,
+      `/api/v1/login`,
       { email, password },
       config
     );
@@ -65,9 +66,10 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_REQUEST });
 
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/me` 
+      `/api/v1/me` 
     );
     dispatch({type:LOAD_USER_SUCCESS,payload:data.user})
+    console.log(data)
   }
   catch (error) {
     console.log(error,"error")
@@ -75,4 +77,22 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-//8:11:01
+
+
+//logout user
+export const logout = () => async (dispatch) => {
+  try {
+   await axios.get(
+      `/api/v1/logout` 
+    );
+    dispatch({type:LOAD_USER_SUCCESS})
+  }
+  catch (error) {
+    console.log(error,"error")
+    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+
+
+

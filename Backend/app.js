@@ -7,8 +7,11 @@ const order=require("./routes/orderRoute")
 var bodyParser = require('body-parser')
 const fileUpload=require("express-fileupload")
 const cors=require('cors')
-
-app.use(cors())
+const corsOptions = {
+    credentials: true,
+    ///..other options
+  };
+app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
