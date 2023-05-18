@@ -15,7 +15,10 @@ import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions.js"
 import { useSelector } from "react-redux";
-
+import Profile from "./component/User/Profile.js"
+import ProtectedRoute from "./component/Route/ProtectedRoute";
+import UpdateProfile from "./component/User/UpdateProfile.js"
+import UpdatePassword from "./component/User/UpdatePassword.js"
 function App() {
 
   const {isAuthenticated,user}=useSelector(state=>state.user)
@@ -40,6 +43,16 @@ function App() {
         <Route extact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route extact path="/search" element={<Search />} />
+        {isAuthenticated &&
+
+          <Route exact path="/account" element={<Profile/>}/>
+        }
+        {isAuthenticated &&
+        <Route exact  path="/me/update" element={<UpdateProfile/>}/>
+        }
+           {isAuthenticated &&
+        <Route exact  path="/password/update" element={<UpdatePassword/>}/>
+        }
       </Routes>
       <Footer />
     </BrowserRouter>
@@ -47,3 +60,8 @@ function App() {
 }
 
 export default App;
+
+
+//8:42:36
+
+//ProtectedRoute component was not working . 

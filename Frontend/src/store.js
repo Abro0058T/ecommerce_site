@@ -7,15 +7,23 @@ import {
   productReducer,
 } from "./reducers/productReducer";
 
-import {userReducer} from"./reducers/userReducer";
+import {profileReducer, userReducer} from"./reducers/userReducer";
+import {cartReducer} from "./reducers/cartReducer"
 
 const reducer = combineReducers({
   products: productReducer,
   productDetails: productDetailsReducer,
-  user:userReducer
+  user:userReducer,
+  profile:profileReducer,
+  cart:cartReducer
 });
 
-let initalState = {};
+let initalState = {
+  cart:{
+    cartItem:localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems")):[],
+  }
+};
 
 const middleware = [thunk];
 
@@ -26,3 +34,5 @@ const store = createStore(
 );
 
 export default store;
+
+//10:00:30

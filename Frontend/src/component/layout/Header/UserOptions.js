@@ -45,6 +45,7 @@ console.log(user)
         dispatch(logout())
         // console.log("logout")
         alert.success("logout successfully")
+        navigate("/")
     }
   return (
     <Fragment>
