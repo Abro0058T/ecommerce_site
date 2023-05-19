@@ -8,6 +8,8 @@ import ReactStars from "react-rating-stars-component"
 import ReviewCard from "./ReviewCard.js"
 import Loader from "../layout/Loader/Loader.js"
 import {useAlert} from "react-alert"
+import {addItemsToCart} from "../../actions/cartAction"
+
 
 function ProductDetails({ match }) {
   const { id } = useParams();
@@ -17,6 +19,12 @@ function ProductDetails({ match }) {
     (state) => state.productDetails
   );
   console.log(product.images);
+const addToCartHandler =()=>{
+
+  dispatch(addItemsToCart(id,quantity));
+  alert.success("Item Added To Cart")
+}
+
   useEffect(() => {
     // console.log(id);
     if(error){
@@ -87,7 +95,7 @@ const decreaseQuantity=()=>{
                 <input type="number" readOnly value={quantity} />
                 <button onClick={increaseQuantity}>+</button>
               </div>
-              <button >Add to Cart</button>
+              <button onClick={addToCartHandler} >Add to Cart</button>
             </div>
             <p>Status:{" "} 
               <b className={product.Stock <1?"redColor":"greenColor"}>
