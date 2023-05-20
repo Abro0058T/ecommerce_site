@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import "./Header.css";
 import { SpeedDial, SpeedDialAction } from "@mui/material";
 import { userReducer } from "../../../reducers/userReducer";
-import { MdDashboard, MdPerson2, MdExitToApp, MdListAlt } from "react-icons/md";
+import { MdDashboard, MdPerson2, MdExitToApp, MdListAlt ,MdShoppingCart} from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
@@ -16,6 +16,7 @@ function UserOptions({ user }) {
   const options =[
       {icon:<MdListAlt/>,name:"Orders",func:orders},
       {icon:<MdPerson2/>,name:"Profile",func:account},
+      {icon:<MdShoppingCart />,name:"Cart",func:cart},
       {icon:<MdExitToApp/>,name:"Logout",func:logoutUser},
     ]
 console.log(user)
@@ -40,6 +41,10 @@ console.log(user)
     function account()
     {
         navigate("/account")
+    }
+    function cart()
+    {
+        navigate("/cart")
     }
     function logoutUser(){
         dispatch(logout())
@@ -68,7 +73,9 @@ console.log(user)
 {options.map(item=>(
   <SpeedDialAction 
   key={item.name}
-  icon={item.icon} tooltipTitle={item.name} onClick={item.func}></SpeedDialAction>
+  icon={item.icon} tooltipTitle={item.name} onClick={item.func}
+  tooltipOpen ={window.innerWidth<=600 ? true :false}
+  ></SpeedDialAction>
   
 ))}
         </SpeedDial>

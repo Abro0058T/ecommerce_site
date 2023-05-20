@@ -20,6 +20,8 @@ import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile.js"
 import UpdatePassword from "./component/User/UpdatePassword.js"
 import Cart from "./component/Cart/Cart.js"
+import Shipping from "./component/Cart/Shipping.js"
+
 function App() {
 
   const {isAuthenticated,user}=useSelector(state=>state.user)
@@ -53,6 +55,9 @@ function App() {
         }
            {isAuthenticated &&
         <Route exact  path="/password/update" element={<UpdatePassword/>}/>
+        }
+                   {isAuthenticated &&
+        <Route exact  path="/shipping" element={<Shipping/>}/>
         }
 
 <Route exact  path="/cart" element={<Cart/>}/>

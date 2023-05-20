@@ -8,10 +8,14 @@ import {useDispatch,useSelector} from "react-redux"
 import { clearErrors,login ,register} from '../../actions/userAction'
 import {useAlert} from "react-alert";
 import {useNavigate} from "react-router-dom"
+import { useLocation,useParams } from 'react-router-dom'
+
 
 const  LoginSignup=()=> {
+    const location=useLocation()
     const navigate=useNavigate()
     const dispatch=useDispatch();
+    const params=useParams()
     const alert=useAlert();
 
 
@@ -69,13 +73,18 @@ const  LoginSignup=()=> {
 
     }
 
+    // console.log(location.state.redirect)
+    const redirect=
+    location?location.state?location.state.redirect:"account":"account"
+
+    console.log(redirect)
     useEffect(()=>{
         if(error){
             alert.error(error);
             dispatch(clearErrors())
         }
         if(isAuthenticated){
-            navigate("/account")
+            navigate(`/${redirect}`)
         }
     },[dispatch,error,alert,navigate,isAuthenticated])
 

@@ -20,7 +20,7 @@ function ProductDetails({ match }) {
   );
   console.log(product.images);
 const addToCartHandler =()=>{
-
+  console.log(id)
   dispatch(addItemsToCart(id,quantity));
   alert.success("Item Added To Cart")
 }

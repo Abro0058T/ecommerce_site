@@ -1,14 +1,19 @@
 import React, { Fragment } from "react";
 import "./cart.css";
-import CartItemCard from "./CartItemCard";
+import CartItemCard from "./CartItemCard.js";
 import { useSelector, useDispatch } from "react-redux";
-import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
+import { addItemsToCart,
+   removeItemsFromCart
+   } from "../../actions/cartAction";
 import { Typography } from "@mui/material";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
+
 
 const Cart = () => {
+  const location =useLocation()
+
     const navigate=useNavigate();
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
@@ -18,6 +23,7 @@ const Cart = () => {
     if (stock <= quantity) {
       return;
     }
+    console.log(id)
     dispatch(addItemsToCart(id, newQty));
   };
 
@@ -26,6 +32,7 @@ const Cart = () => {
     if (1 >= quantity) {
       return;
     }
+    console.log(newQty)
     dispatch(addItemsToCart(id, newQty));
   };
 
@@ -34,7 +41,8 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping")
+    navigate("/login",{state:{redirect:"shipping"
+  }})
   };
 
   return (
@@ -57,12 +65,12 @@ const Cart = () => {
 
             {cartItems &&
               cartItems.map((item) => (
-                <div className="cartContainer" key={item.product}>
+                <div className="cartContainer" key={item.id}>
                   <CartItemCard item={item} deleteCartItems={deleteCartItems} />
                   <div className="cartInput">
                     <button
                       onClick={() =>
-                        decreaseQuantity(item.product, item.quantity)
+                        decreaseQuantity(item.id, item.quantity)
                       }
                     >
                       -
@@ -70,11 +78,15 @@ const Cart = () => {
                     <input type="number" value={item.quantity} readOnly />
                     <button
                       onClick={() =>
-                        increaseQuantity(
-                          item.product,
-                          item.quantity,
-                          item.stock
-                        )
+                        {
+                          console.log(item)
+                          increaseQuantity(
+                            // item.name,
+                            item.id,
+                            item.quantity,
+                            item.stock,
+                            )
+                          }
                       }
                     >
                       +
@@ -109,4 +121,6 @@ const Cart = () => {
 
 export default Cart;
 
-//10:12:10
+//10:32:01
+
+//add cart to tool tip 
