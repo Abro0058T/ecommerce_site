@@ -185,7 +185,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
     await cloudinary.v2.uploader.destroy(imageId);
 
-    const myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
+    const myCloud=await cloudinary.v2.uploader.upload(req.body.avata,{
       folder:"avatars",
       width:150,
       crop:"scale",

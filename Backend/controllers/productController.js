@@ -119,7 +119,7 @@ exports.createProductReview= catchAsyncErrors(async(req,res,next)=>{
 
   if(isReviewed){
     product.reviews.forEach(rev=>{
-      if(rev=>rev.user.toString()===req.user._id.toString())
+      if(rev.user.toString()===req.user.id.toString())
       {
         
         

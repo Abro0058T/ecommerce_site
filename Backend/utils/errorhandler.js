@@ -1,12 +1,4 @@
-class ErrorHandler extends Error{
-    constructor(message,statusCode){
-        super(message);
-        this.statusCode=statusCode
-
-        Error.captureStackTrace(this,this.constructor);
-    }
-}
-
-
-
-module.exports=ErrorHandler
+module.exports = (theFunc) => (req, res, next) => {
+    Promise.resolve(theFunc(req, res, next)).catch(next);
+  };
+  
